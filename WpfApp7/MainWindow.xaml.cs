@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,26 @@ namespace WpfApp7
         public MainWindow()
         {
             InitializeComponent();
+
+
+            Lesson lesson1 = new Lesson();
+
+            Word word = new Word();
+            word.Value = "Telefon";
+            word.Type = Types.Das;
+
+            Word word1 = new Word();
+            word1.Value = "Fremdsprache";
+            word1.Type = Types.Die;
+
+            lesson1.words.Add(word);
+            lesson1.words.Add(word1);
+
+            string json = JsonConvert.SerializeObject(lesson1);
+
+            Lesson lessonFromJson = JsonConvert.DeserializeObject<Lesson>(json);
+
+
         }
     }
 }
